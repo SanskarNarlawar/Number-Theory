@@ -1,0 +1,639 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Untitled",
+      "provenance": [],
+      "collapsed_sections": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "V_hFpVWNANWm"
+      },
+      "source": [
+        "def primenumbers(n):\n",
+        "  import numpy as np\n",
+        "  import math\n",
+        "  A = np.arange(1,n+1)\n",
+        "  for i in range(1,n-1):\n",
+        "      if i > math.sqrt(n) + 2:\n",
+        "        break\n",
+        "      if A[i] != 0:\n",
+        "        j = 2\n",
+        "        while True:\n",
+        "          if (i+1)*j > n:\n",
+        "            break\n",
+        "          else:\n",
+        "            A[(i+1)*j-1] = 0\n",
+        "            j = j+1\n",
+        "  A[0] = 0\n",
+        "  B = []\n",
+        "  for i in range(len(A)):\n",
+        "    if A[i]!= 0 :\n",
+        "      B.append(A[i])   \n",
+        "  no_of_primes = len(B)\n",
+        "  return no_of_primes,B;"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "eVj_1hlDVnrW",
+        "outputId": "54c1cdf7-8165-4118-bfdf-5733c8dbc78a"
+      },
+      "source": [
+        " import numpy as np\r\n",
+        " primenumbers(10)"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "(4, [2, 3, 5, 7])"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 4
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "g9rvydw5kSzG"
+      },
+      "source": [
+        "\r\n",
+        "def extended_euclid(a,b):\r\n",
+        "  if a%b == 0:\r\n",
+        "    return b,0,1;\r\n",
+        "  else :\r\n",
+        "   gcd,x,y = extended_euclid(b,a%b)\r\n",
+        "   swap = x\r\n",
+        "   x = y\r\n",
+        "   y = swap - ((a-a%b)/b)*y\r\n",
+        "   return gcd,x,y;\r\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "zypP0ZEMiEP7"
+      },
+      "source": [
+        "def convert_base_to_x(number,x):\r\n",
+        "  converted_number = []\r\n",
+        "  while number > 0 :\r\n",
+        "     remainder = number%x\r\n",
+        "     converted_number.append(remainder)\r\n",
+        "     number = (number-remainder)/x\r\n",
+        "  max = len(converted_number)\r\n",
+        "  final_number = 0\r\n",
+        "  for i in range(max):\r\n",
+        "    final_number = final_number  + converted_number[i]*(10**i)  \r\n",
+        "    final_number = int(final_number)\r\n",
+        "  ## converted_number is the array form of number\r\n",
+        "  return converted_number,final_number\r\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "8BLPObtFQ-kA"
+      },
+      "source": [
+        ""
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "948MVoz83eXw"
+      },
+      "source": [
+        "def convert_base_to_10(number,base):\r\n",
+        "  final_number = 0\r\n",
+        "  i = 0\r\n",
+        "  while number > 0 :\r\n",
+        "    final_number = final_number + (number%10)*(base**i)\r\n",
+        "    number = (number - number%10)/10\r\n",
+        "    i = i + 1\r\n",
+        "  final_number = int(final_number)\r\n",
+        "  return final_number\r\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "9lTRmWIRBtye"
+      },
+      "source": [
+        "def gcd(a,b):\r\n",
+        "  if a%b == 0:\r\n",
+        "    return b;\r\n",
+        "  else:\r\n",
+        "    hcf = gcd(b,a%b)\r\n",
+        "  return hcf;"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "yrmnob_zSK56",
+        "outputId": "bd22cb2e-aeae-4fa7-9501-acef228d5b55"
+      },
+      "source": [
+        "gcd(10,8)"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "2"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 3
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "HIPOqVQK9nXp"
+      },
+      "source": [
+        "def convert_basex_to_basey(number,x,y):\r\n",
+        "  number = convert_base_to_10(number,x)\r\n",
+        "  number = convert_base_to_x(number,y)\r\n",
+        "  return number\r\n",
+        "\r\n",
+        "     \r\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "bE6BIvSp_ZSx",
+        "outputId": "162c5ba5-fa71-4ea9-b32b-5d3940114ebc"
+      },
+      "source": [
+        "convert_basex_to_basey(11011,2,7)"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "36"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 27
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "8VcDKYtNSZc0"
+      },
+      "source": [
+        "def linear_diophantine_equations(a,b,c):\r\n",
+        "  gcd,x,y = extended_euclid(a,b)\r\n",
+        "  if c%gcd==0:\r\n",
+        "    x = x*c/gcd\r\n",
+        "    y = y*c/gcd\r\n",
+        "    return \"AP with one of the terms\" , x , \"and common difference\", b/gcd,\"AP with one of the terms\", y, \"and common difference\", -a/gcd;\r\n",
+        "  else:\r\n",
+        "    return \"no integer solutions\"; \r\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "wFWEMW3OSaEd",
+        "outputId": "74a45331-f95f-43f1-8da2-9105e9e0ad85"
+      },
+      "source": [
+        "linear_diophantine_equations(34,51,170)\r\n",
+        "linear_diophantine_equations(91,117,65)"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "('AP with one of the terms',\n",
+              " 20.0,\n",
+              " 'and common difference',\n",
+              " 9.0,\n",
+              " 'AP with one of the terms',\n",
+              " -15.0,\n",
+              " 'and common difference',\n",
+              " -7.0)"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 19
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "3De854fQSan7"
+      },
+      "source": [
+        "def prime_factorization_of_factorials(n):\r\n",
+        "  no_of_primes,primes =  primenumbers(n)\r\n",
+        "  primes_power = []\r\n",
+        "  for i in range(no_of_primes):\r\n",
+        "    sum = 0\r\n",
+        "    p = primes[i]\r\n",
+        "    q = primes[i]\r\n",
+        "    while(True):\r\n",
+        "      if (n-n%p)/p == 0:\r\n",
+        "        break \r\n",
+        "      else:\r\n",
+        "        sum = sum + (n-n%p)/p\r\n",
+        "        p = p*q\r\n",
+        "    primes_power.append(sum)\r\n",
+        "  return primes,primes_power;\r\n",
+        "\r\n",
+        "    \r\n",
+        "\r\n",
+        "\r\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "SlpazVLTs_jL",
+        "outputId": "c294d9cb-ca72-4b62-fc09-56700b82c6fa"
+      },
+      "source": [
+        "prime_factorization_of_factorials(10)"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "([2, 3, 5, 7], [8.0, 4.0, 2.0, 1.0])"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 20
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "3r-4deMBt__F"
+      },
+      "source": [
+        "def modular_exponentiation(b,e,m):\r\n",
+        "  array_form,bin_of_e = convert_base_to_x(e,2)\r\n",
+        "  max = len(array_form)\r\n",
+        "  powers = []\r\n",
+        "  for i in range(max):\r\n",
+        "    b = b%m\r\n",
+        "    powers.append(b)\r\n",
+        "    b = b*b\r\n",
+        "  answer = 1\r\n",
+        "  for i in range(max):\r\n",
+        "    if array_form[i]!=0:\r\n",
+        "      answer = (answer*powers[i])%m\r\n",
+        "  return answer\r\n",
+        "  \r\n",
+        "\r\n",
+        "\r\n",
+        "\r\n",
+        "\r\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "UKZvw6I2IMgx",
+        "outputId": "64efb1c8-ef93-4f06-a0da-07fd920e46e9"
+      },
+      "source": [
+        "modular_exponentiation(34566752934597896777777777777898,99786996578653467997888888888888888888888888888888888888887664579869889999999,10223457567865676457777777777777777777697)"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "8216507294844022065796860284870510023577"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 32
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "Nm98rsmgJy0p"
+      },
+      "source": [
+        "def linear_congruence(a,b,m):\r\n",
+        "  d,x,y = extended_euclid(a,m)\r\n",
+        "  if b%d==0:\r\n",
+        "    x = x*b/d\r\n",
+        "    return [\"d solutions in AP with one of the terms\",x,\"and common difference\",m/d]; \r\n",
+        "  else:\r\n",
+        "    return \"no solutions\";"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Zyg9KhopPnAl",
+        "outputId": "315f371d-2f06-476d-904c-263ba3879ad6"
+      },
+      "source": [
+        "linear_congruence(5,9,3)\r\n",
+        "linear_congruence(67,223,54)"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "['d solutions in AP with one of the terms',\n",
+              " 5575.0,\n",
+              " 'and common difference',\n",
+              " 54.0]"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 13
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "xxZcID6YP6Yl"
+      },
+      "source": [
+        "\r\n",
+        "def ChineseRemainderTheorem(n1, r1, n2, r2):\r\n",
+        "    \r\n",
+        "    # if you have implemented extended_gcd correctly, x and y should be two integers such that \r\n",
+        "    # n1*x + n2*y = gcd(n1, n2). Now use these two integers to return a proper answer.\r\n",
+        "    # make sure that you have run the extended_gcd function before running this cell\r\n",
+        "    (d, x, y) = extended_gcd(n1, n2) \r\n",
+        "    \r\n",
+        "    assert d == 1\r\n",
+        "    \r\n",
+        "    # YOUR CODE HERE\r\n",
+        "    return (r1 + n1*x*(r2-r1))%(n1*n2);\r\n",
+        "    raise NotImplementedError()\r\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "bVehTVAjaPcL"
+      },
+      "source": [
+        ""
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "1i_WD5MpXkxx",
+        "outputId": "04e54884-1dac-44d1-889f-6a0fb1f18d6f"
+      },
+      "source": [
+        "chinese_remainder(13,7,6,5)"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "111.0"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 9
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "lxdDOpauaZDZ",
+        "outputId": "4109353b-8b4e-4e26-cb76-1297f6ad1d48"
+      },
+      "source": [
+        "a = pow(2,4)\r\n",
+        "b = pow(2,a)\r\n",
+        "b = b + 1\r\n",
+        "modular_exponentiation(7,b-1,b)"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "1"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 73
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "rdN842c2fLsc"
+      },
+      "source": [
+        "def fi_of_n(n):\r\n",
+        "  no_of_primes,A = primenumbers(n)\r\n",
+        "  numbers = n\r\n",
+        "  max = len(A)\r\n",
+        "  for i in range(max):\r\n",
+        "      if n%A[i]==0:\r\n",
+        "        numbers = numbers-numbers/A[i]\r\n",
+        "  return numbers;\r\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "x_QdTGnSgiQR",
+        "outputId": "237357f9-f3ae-46d9-d118-5e234a8dfb28"
+      },
+      "source": [
+        "fi_of_n(11)"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "10.0"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 90
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "Lyv-OO5ch1DY",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "f4ebfb19-a633-494e-bd5e-56756b09f5c8"
+      },
+      "source": [
+        "def modInverse(a, n) : \r\n",
+        "    \"\"\"Calculate the multiplicative inverse of a (mod n)\"\"\"\r\n",
+        "    x,y = diophantine(a, n, 1)\r\n",
+        "    return x%n;\r\n",
+        "    \r\n",
+        "    # YOUR CODE HERE\r\n",
+        "\r\n",
+        "    raise NotImplementedError()\r\n",
+        "    \r\n",
+        "def divide(b, a, n):\r\n",
+        "    assert n > 1 and a > 0 # and gcd(a, n) == 1\r\n",
+        "    \r\n",
+        "    aInv = modInverse(a,n)\r\n",
+        "    \r\n",
+        "    assert (a * aInv) % n == 1\r\n",
+        "    \r\n",
+        "    # return the number x s.t. a*x = b (mod n) and 0 <= x <= n-1.\r\n",
+        "    return (aInv * b) % n"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "13"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 14
+        }
+      ]
+    }
+  ]
+}
